@@ -139,6 +139,7 @@ Never treat bug fixes or small component edits as "exempt plumbing". If a bug in
   ```sh
   npx modern-web-guidance@latest retrieve "<guide-id>"
   ```
+- **Sandboxed environments**: When outbound network access is blocked (`E403` / offline), pass `--offline` (`npx --offline modern-web-guidance@latest ...`) to run from the local `~/.npm/_npx` cache, falling back to an unsandboxed call only if the cache is cold.
 
 ## UI Design with Stitch
 
