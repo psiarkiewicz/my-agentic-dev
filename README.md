@@ -13,7 +13,7 @@ It works with Claude Code, Cursor, OpenCode, Devin, Windsurf, Amp, Pi and other 
 
 ### The rules in `GENERIC-AGENTS.md`
 
-- **Documents in reading order**: `CONTEXT.md` (domain vocabulary and invariants), the spec (its test vectors set the bar for correctness), and the living `ARCHITECTURE.md`, `COMPREHENSIVE_QA_FLOW.md` and `USER_GUIDE.md`. Also `DESIGN.md` (the visual design contract) and ADRs in `docs/adr/`.
+- **Documents in reading order**: `GLOSSARY.md` (domain vocabulary and invariants), the spec (its test vectors set the bar for correctness), and the living `ARCHITECTURE.md`, `COMPREHENSIVE_QA_FLOW.md` and `USER_GUIDE.md`. Also `DESIGN.md` (the visual design contract) and ADRs in `docs/adr/`.
 - **Tracker-neutral issue workflow**: one vocabulary (*Read*, *Comment*, *Resolve*, *batch*, *plan*, *roadmap*) covering both local markdown tickets in `.scratch/` and GitHub Issues.
 - **Branch / worktree per ticket**: never on `main`, and nothing merges until a human has tested it.
 - **Testing gauntlet**: strict typecheck, a lint run with zero warnings, the full test suite, a production build, live browser checks via the `chrome-devtools` MCP on an OS-assigned port, doc updates, ticket resolution, a modern-web-guidance audit, and an `improve-codebase-architecture` deepening review.
@@ -49,7 +49,7 @@ The script runs:
 Then, in the target repo:
 
 1. Fill in the project-specific sections listed in the bootstrap comment at the top of `AGENTS.md`: commands, stack, governing principle, invariants, seams, build order, design, known traps.
-2. Run `/setup-matt-pocock-skills` in your agent to generate `docs/agents/` (issue tracker, triage labels, domain docs), and keep only your tracker's column in the Issue Tracker table.
+2. Run `/setup-matt-pocock-skills` in your agent to generate `docs/agents/` (issue tracker, triage labels, domain docs), fold its tracker lines into the Issue Tracker section (rather than under Agent Skills & Repository Conventions), keep only your tracker's column in that table, and narrow Domain docs to the chosen layout.
 3. For UI projects, connect Stitch (below), then have the agent create `DESIGN.md` and a Stitch project.
 
 ### Stitch MCP server (one time per agent)

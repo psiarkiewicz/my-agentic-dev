@@ -101,8 +101,10 @@ cat <<'EOF'
 ==> Done. Next steps:
   1. Fill in the project-specific sections listed in the bootstrap comment in AGENTS.md.
   2. Run /setup-matt-pocock-skills in your agent to write docs/agents/
-     (issue tracker, triage labels, domain docs), then fold its tracker lines
-     into AGENTS.md's Issue Tracker section.
+     (issue tracker, triage labels, domain docs): fold its Issue tracker and
+     Triage labels lines into AGENTS.md's Issue Tracker section (do not add
+     them under Agent Skills & Repository Conventions), keep only your
+     tracker's column in that table, and narrow Domain docs to the chosen layout.
 EOF
 
 if [[ "$STITCH" -eq 1 ]]; then

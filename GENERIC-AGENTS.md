@@ -5,7 +5,7 @@ Keep this file current: when a statement here stops being true (project status, 
 ## Project Overview & Documents
 
 **Documents, in reading order:**
-- `CONTEXT.md` — what the project is, why it is shaped this way, and the domain vocabulary and invariants that drive the design. Read it first.
+- `GLOSSARY.md` — what the project is, why it is shaped this way, and the domain vocabulary and invariants that drive the design. Read it first.
 - The specification, if the project has one — the authoritative source for rules, data models and test vectors. Its test vectors are the correctness bar: follow the rules it specifies rather than inferring them.
 - `ARCHITECTURE.md` — living architectural summary, module/component hierarchy, state flow, data storage, and Mermaid diagrams. Updated after every ticket.
 - `COMPREHENSIVE_QA_FLOW.md` — living end-to-end user verification guide covering all implemented features. Updated after every ticket.
@@ -23,7 +23,7 @@ Keep this file current: when a statement here stops being true (project status, 
      - Build order, when some layers must be hardened before others.
      - Design (UI projects): create `DESIGN.md` at the repo root and a Stitch project for the app, and record the project ID in `DESIGN.md` (see UI Design with Stitch).
      - Entries for the Known traps section below.
-     Then run `/setup-matt-pocock-skills` to write `docs/agents/`, fold the tracker lines it adds into the Issue Tracker section, and keep only the repo's tracker column in that table. -->
+     Then run `/setup-matt-pocock-skills` to write `docs/agents/`: fold its Issue tracker and Triage labels lines into the `## Issue Tracker` section above (do not add `### Issue tracker` or `### Triage labels` under `## Agent Skills & Repository Conventions`), keep only the repo's tracker column in that table, and narrow `### Domain docs` below to the chosen layout. -->
 
 ## Living Architecture, User Guide & QA Documentation
 
@@ -175,7 +175,7 @@ Verified problems that have already bitten, or that a reasonable implementation 
 
 ### Domain docs
 
-Single-context (`CONTEXT.md` and `docs/adr/` at the repo root) or multi-context (`CONTEXT-MAP.md`) layout. See `docs/agents/domain.md`.
+Single-context (`GLOSSARY.md` and `docs/adr/` at the repo root) or multi-context (`GLOSSARY-MAP.md`) layout. See `docs/agents/domain.md`.
 
 ### Modern web guidance
 
