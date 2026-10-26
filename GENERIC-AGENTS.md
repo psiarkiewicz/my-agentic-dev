@@ -71,10 +71,10 @@ Before any ticket is marked complete or committed, the agent's pre-submit verifi
    - Run the full automated test suite (e.g. `pnpm test:run`), not just a single test file — all tests must pass.
    - Run the production build (e.g. `pnpm build`) to verify clean bundling and asset generation.
    - Tests assert behaviour through each module's interface: function results, rendered DOM under a DOM stand-in (e.g. happy-dom), store state. Style and design-token rules live in the linter, because tests that grep production source text pin implementation and block refactors. Generated files (e.g. `USER_GUIDE.md`) come from an explicit script; tests compare them and leave the working tree untouched.
-3. **Live Browser Verification via `chrome-devtools` MCP** (for all tickets touching UI, components, styles, client state, or persistence):
+3. **Live Browser Verification via `chrome-devtools` MCP** (always run at least a dev-console smoke check once `index.html` exists; run full interaction and visual checks for all tickets touching UI, components, styles, client state, or persistence):
    - Start an isolated dev server on an OS-assigned port (the `dev:agent` script) as a background task, and read the bound `http://localhost:<port>/` URL from its output.
    - Open a dedicated tab (`new_page`, or `navigate_page` with an explicit `pageId`) at that URL.
-   - Inspect `list_console_messages` to guarantee zero unhandled exceptions, console errors, or runtime registration failures.
+   - Inspect `list_console_messages` and `list_network_requests` to check the dev console for errors and warnings (unhandled exceptions, console errors, console warnings, runtime registration failures, or failed network requests such as 404s) and fix anything that isn't expected.
    - Test user interactions and flows via `click`, `fill`, and `evaluate_script`.
    - Inspect visual fidelity, responsive layouts, and print/theme styles via `take_screenshot`. For a ticket built from a Stitch screen, compare the screenshot against that screen and list any intentional deviations in the hand-off.
    - Kill the background dev-server task when verification completes, so no orphaned server outlives the session.
@@ -105,7 +105,7 @@ Run a **batch** when the user names one ("run batch 3") or a ticket range ("do 1
 
 1. **One branch for the batch**: `git checkout -b batch-<NN>-<slug>` from latest `main` (or `git worktree add .worktrees/batch-<NN> -b batch-<NN>-<slug>`). The tickets' batch gives the branch name.
 2. **Tickets in batch order, one commit each**: implement the ticket, then run the typecheck, the linter and the test files it touches. Frontend tickets still run the `modern-web-guidance` search before editing and cite the guide IDs in their own commit. A ticket is done when one commit holds its code and tests, the ticket is **Resolved**, and those checks are green.
-3. **Once, after the last ticket**: run the full test suite and the production build, and one `chrome-devtools` session that walks every ticket's Verification section. Then make one update of `ARCHITECTURE.md`, `COMPREHENSIVE_QA_FLOW.md` and `USER_GUIDE.md` covering the whole batch, and commit it as the batch's docs commit.
+3. **Once, after the last ticket**: run the full test suite and the production build, and one `chrome-devtools` session that checks the dev console for unexpected errors/warnings and walks every ticket's Verification section. Then make one update of `ARCHITECTURE.md`, `COMPREHENSIVE_QA_FLOW.md` and `USER_GUIDE.md` covering the whole batch, and commit it as the batch's docs commit.
 4. **Architecture review (gauntlet step 7), scoped to the batch's modified modules**: reconcile its candidates with the roadmap and drop the ones already ticketed. Append the rest, plus the batch's ticket statuses, to the roadmap's *Batch Log* in place of a new plan.
 5. **One hand-off and hard stop (gauntlet step 8)**: a per-ticket summary, one combined test recipe, the architecture notes, and any generic rule candidates. The batch branch stays unmerged until the user has tested it.
 
