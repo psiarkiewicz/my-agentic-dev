@@ -180,6 +180,7 @@ This file grew from `GENERIC-AGENTS.md` in [psiarkiewicz/my-agentic-dev](https:/
 Verified problems that have already bitten, or that a reasonable implementation gets wrong. Add one line when a bug's root cause is a non-obvious rule: the rule, then its consequence.
 
 <!-- - **<Trap>**: <rule> → <consequence>. -->
+- **Dev-server endpoints that write files on disk must isolate those paths from config bundling and HMR**: keep bundler config plugins free of static imports into dev-written JSON/asset directories, and exclude those output paths in the dev watcher and hot-update hook (e.g. Vite `server.watch.ignored` + `handleHotUpdate`) → otherwise writing a file mid-request restarts the dev server (dropping the active HTTP/WebSocket connection) or broadcasts a client full-reload that wipes editor UI state.
 
 ## Agent Skills & Repository Conventions
 
